@@ -1,90 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sreehari S S - Aspiring Data Analyst</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1em 0;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #333;
-        }
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        section {
-            padding: 20px;
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #4CAF50;
-            color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sreehari S S — Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #0D9488;
+      --teal-light: #5EEAD4;
+      --teal-pale: #F0FDFA;
+      --dark: #0F172A;
+      --mid: #334155;
+      --grey: #64748B;
+      --border: #E2E8F0;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--teal-light);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--teal-light); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(13,148,136,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(94,234,212,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--teal-light);
+      background: rgba(13,148,136,0.12);
+      border: 1px solid rgba(13,148,136,0.3);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span { color: var(--teal-light); }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: #0f766e; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--teal-light); color: var(--teal-light); }
+
+    .hero-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 2px solid rgba(94,234,212,0.2);
+      box-shadow: 0 0 60px rgba(13,148,136,0.2);
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 60px;
+    }
+
+    .stats-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--teal-light);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 60px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .sec-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
+    }
+
+    /* ABOUT */
+    #about { background: rgba(255,255,255,0.02); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-text p strong { color: var(--teal-light); font-weight: 600; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .skill-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .skill-card-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+
+    .skill-card-val {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--dark); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: rgba(13,148,136,0.4);
+      transform: translateY(-3px);
+    }
+
+    .project-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .project-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 18px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--teal-light);
+      text-decoration: none;
+      border: 1px solid rgba(94,234,212,0.25);
+      padding: 5px 12px;
+      border-radius: 100px;
+      transition: background 0.2s;
+    }
+
+    .project-link:hover { background: rgba(94,234,212,0.08); }
+
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      font-size: 0.65rem;
+      background: rgba(13,148,136,0.12);
+      color: var(--teal-light);
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid rgba(13,148,136,0.2);
+    }
+
+    /* EXPERIENCE */
+    #experience { background: rgba(255,255,255,0.02); }
+
+    .exp-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .exp-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 3px solid var(--teal);
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+    }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .exp-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .exp-dates {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--grey);
+    }
+
+    .exp-role {
+      font-size: 0.8rem;
+      color: var(--teal-light);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .exp-bullets li {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .exp-bullets li::before {
+      content: "▸";
+      color: var(--teal);
+      position: absolute;
+      left: 0;
+      font-size: 0.6rem;
+      top: 3px;
+    }
+
+    .exp-bullets li b { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+    /* CONTACT */
+    #contact { background: var(--dark); text-align: center; }
+
+    .contact-box {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .contact-box p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 60px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+      font-family: 'DM Mono', monospace;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Sreehari S S</h1>
-    <p>Aspiring Data Analyst</p>
-</header>
+  <nav>
+    <div class="nav-logo">Sreehari S S</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<nav>
-    <a href="#about">About Me</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">&#128205; Kollam, Kerala · Open to opportunities</div>
+        <h1>Data Analyst<br><span>& Automation</span><br>Specialist</h1>
+        <p class="hero-sub">Finance-turned-data professional with hands-on experience in SQL, Python, BI dashboards, and AI-powered workflow automation. I turn messy data into clear decisions.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn-primary">View my work ↓</a>
+          <a href="mailto:sreehari200011@gmail.com" class="btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <img src="https://lh3.googleusercontent.com/d/1jhaJzxbvdC-NMo4gReMVlwMPxzyMEHc7" alt="Sreehari S S" class="hero-photo">
+    </div>
+  </section>
 
-<section id="about">
-    <h2>About Me</h2>
-    <p>Hello! My name is Sreehari S S, and I am an aspiring data analyst from Trivandrum. I am a B.Com graduate with 2 years of experience in accounting. Currently, I am working as a Data Analyst Intern at Pentafold Pvt Ltd, where I am honing my skills in data analysis and visualization.</p>
-</section>
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div>
+        <div class="stat-num">54K+</div>
+        <div class="stat-label">Rows of data analysed</div>
+      </div>
+      <div>
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Manual task reduction</div>
+      </div>
+      <div>
+        <div class="stat-num">10K+</div>
+        <div class="stat-label">Leads managed via AWS</div>
+      </div>
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Live production projects</div>
+      </div>
+    </div>
+  </div>
 
-<section id="projects">
-    <h2>Projects</h2>
-    <h3>Student Grade Analysis (Python)</h3>
-    <p>This project involved analyzing student grades using Python to identify trends and patterns that can help improve academic performance.</p>
-    <h3>Employee Attrition Dashboard (Excel & Power BI)</h3>
-    <p>Using Excel and Power BI, I created a comprehensive dashboard to analyze employee attrition rates, providing insights into potential areas of improvement for employee retention.</p>
-</section>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="sec-tag">// about me</div>
+      <h2 class="sec-title">Finance background.<br>Data mindset.</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I started my career as an accountant — which means I understand <strong>financial data, P&L structures, and business numbers</strong> at a level most data analysts don't. That foundation pushed me into data analytics, and I haven't looked back.</p>
+          <p>Today I work at <strong>Pentafold Ltd</strong> in the UK health and social care space, where I build BI dashboards, write complex SQL, automate workflows with n8n and APIs, and use AI tools to accelerate analysis.</p>
+          <p>I've built <strong>production-grade web apps</strong>, analysed <strong>national social care datasets</strong> for England and Scotland, and engineered automation pipelines that connect Google, HubSpot, and AWS into unified workflows.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-card-label">Analytics</div>
+            <div class="skill-card-val">SQL · PostgreSQL · Python (Pandas) · Advanced Excel</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Visualisation</div>
+            <div class="skill-card-val">Looker Studio · Power BI · Tableau</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Automation & AI</div>
+            <div class="skill-card-val">n8n · Custom GPT · AWS SES/S3 · API Integration</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-label">Operations</div>
+            <div class="skill-card-val">HubSpot CRM · Tally ERP · SAP FICO</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="contact">
-    <h2>Contact</h2>
-    <p>You can reach me via email at: <a href="mailto:sreehari@example.com">sreehari@example.com</a></p>
-</section>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="sec-tag">// portfolio</div>
+      <h2 class="sec-title">Things I've built.</h2>
+      <div class="projects-grid">
 
-<footer>
-    <p>&copy; 2024 Sreehari S S</p>
-</footer>
+        <div class="project-card">
+          <div class="project-type">Data Dashboard</div>
+          <div class="project-name">CQC England Social Care Report</div>
+          <div class="project-tags">
+            <span class="tag">Looker Studio</span>
+            <span class="tag">Data Blending</span>
+            <span class="tag">Geo Maps</span>
+          </div>
+          <div class="project-desc">Multi-page dashboard analysing 54,000+ rows of CQC social care data across England — covering 14,700+ care homes with geo mapping, provider rankings, rating breakdowns, and dynamic filters.</div>
+          <div class="project-links">
+            <a href="https://lookerstudio.google.com/reporting/5061794e-ffa4-4a03-aebb-7443db689937" target="_blank" class="project-link">View Dashboard ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Data Dashboard</div>
+          <div class="project-name">Care Inspectorate Scotland Report</div>
+          <div class="project-tags">
+            <span class="tag">Looker Studio</span>
+            <span class="tag">RAD Scores</span>
+            <span class="tag">Enforcement Data</span>
+          </div>
+          <div class="project-desc">Interactive dashboard covering 10,900+ Scottish care services — with service provider rankings by integration authority, staff numbers, satisfaction scores, and enforcement records across 32 regions.</div>
+          <div class="project-links">
+            <a href="https://lookerstudio.google.com/reporting/c094bd3f-4b8d-448c-8062-93549e074bce" target="_blank" class="project-link">View Dashboard ↗</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Web App · Live Production</div>
+          <div class="project-name">Crowngate Dental Lab Portal</div>
+          <div class="project-tags">
+            <span class="tag">PWA</span>
+            <span class="tag">Multi-Role Auth</span>
+            <span class="tag">Case Management</span>
+          </div>
+          <div class="project-desc">Full-stack web app with three user roles (Doctor, Admin, Technician) — real-time case order management, patient records, shade/tooth inputs, required-date scheduling, and role-based authentication. Fully live.</div>
+          <div class="project-links">
+            <a href="https://crowngatedental.in" target="_blank" class="project-link">Website ↗</a>
+            <a href="https://app.crowngatedental.in" target="_blank" class="project-link">Web App ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <div class="sec-tag">// experience</div>
+      <h2 class="sec-title">Where I've worked.</h2>
+      <div class="exp-list">
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-company">Pentafold Ltd</span>
+            <span class="exp-dates">Jun 2024 — Present</span>
+          </div>
+          <div class="exp-role">Data Analyst & Business Analyst</div>
+          <ul class="exp-bullets">
+            <li>Built multi-page <b>Looker Studio and Power BI dashboards</b> tracking marketing KPIs, sales funnels, and lead pipeline for C-suite reporting.</li>
+            <li>Wrote and optimised complex <b>SQL queries on PostgreSQL</b> for business intelligence, trend forecasting, and data validation.</li>
+            <li>Engineered <b>n8n automation workflows</b> integrating Google APIs, HubSpot API, and AWS — reducing manual tasks by 70%.</li>
+            <li>Built a <b>custom GPT-based SQL assistant</b> using schema ingestion to accelerate query generation and ad-hoc analysis.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-company">RRKZ International Pvt Ltd</span>
+            <span class="exp-dates">Jul 2023 — Apr 2024</span>
+          </div>
+          <div class="exp-role">Account Executive (Analytics Focus)</div>
+          <ul class="exp-bullets">
+            <li>Visualised multi-channel sales data in <b>Power BI</b> to support strategic quarterly forecasting.</li>
+            <li>Identified sales trends and anomalies through data analysis, directly informing commercial strategy.</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <span class="exp-company">Sreelal & Co</span>
+            <span class="exp-dates">Feb 2022 — Apr 2024</span>
+          </div>
+          <div class="exp-role">Accountant</div>
+          <ul class="exp-bullets">
+            <li>Managed financial reporting and ledger closings using <b>Tally ERP</b> — building a strong foundation in financial data structures and P&L analysis.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="sec-tag">// contact</div>
+      <h2 class="sec-title">Let's talk.</h2>
+      <div class="contact-box">
+        <p>I'm open to Data Analyst, Business Analyst, and AI Automation roles in India. If you have an interesting opportunity or just want to connect, reach out.</p>
+        <div class="contact-links">
+          <a href="mailto:sreehari200011@gmail.com" class="btn-primary">sreehari200011@gmail.com</a>
+          <a href="https://linkedin.com/in/sreehari-s-s" target="_blank" class="btn-ghost">LinkedIn ↗</a>
+          <a href="https://github.com/sreehari112000" target="_blank" class="btn-ghost">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Sreehari S S · Built with HTML & CSS
+  </footer>
 
 </body>
 </html>
